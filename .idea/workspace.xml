@@ -1,7 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="5f55d6a9-7bf5-4c28-936a-b9c028e123b3" name="Changes" comment=".ToFloat und so ist drinnen. Test mesg in Scene 157" />
+    <list default="true" id="5f55d6a9-7bf5-4c28-936a-b9c028e123b3" name="Changes" comment=".ToFloat und so ist drinnen. Test mesg in Scene 157">
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_31_03_2024_15_35__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_31_03_2024_15_35__Changes_.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/src/main/kotlin/cga/exercise/components/geometry/Transformable.kt" beforeDir="false" afterPath="$PROJECT_DIR$/project/src/main/kotlin/cga/exercise/components/geometry/Transformable.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/src/main/kotlin/cga/exercise/game/Scene.kt" beforeDir="false" afterPath="$PROJECT_DIR$/project/src/main/kotlin/cga/exercise/game/Scene.kt" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -32,9 +40,9 @@
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 8
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 8
+}</component>
   <component name="ProjectId" id="2eSJrPd2Uooc1tSewX7Tvi3xIHa" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -42,9 +50,18 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Downloaded.Files.Path.Enabled": "false",
+    "Repository.Attach.Annotations": "false",
+    "Repository.Attach.JavaDocs": "false",
+    "Repository.Attach.Sources": "false",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "main"
+    "git-widget-placeholder": "main",
+    "jdk.selected.JAVA_MODULE": "21",
+    "last_opened_file_path": "C:/Users/derMo/.m2/repository/org/jetbrains/kotlin/kotlin-stdlib-common/1.9.0",
+    "project.structure.last.edited": "Libraries",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2"
   }
 }]]></component>
   <component name="RunManager">
@@ -71,10 +88,17 @@
       <option name="presentableId" value="Default" />
       <updated>1711892245048</updated>
     </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
+    <MESSAGE value=" Viele floats und doubls sind falsch" />
+    <MESSAGE value=" Viele kleine fehler jetzt richtig" />
     <MESSAGE value=".ToFloat und so ist drinnen. Test mesg in Scene 157" />
     <option name="LAST_COMMIT_MESSAGE" value=".ToFloat und so ist drinnen. Test mesg in Scene 157" />
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
 </project>

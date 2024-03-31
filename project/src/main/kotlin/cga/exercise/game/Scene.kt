@@ -27,11 +27,11 @@ import org.lwjgl.stb.STBImage
  */
 class Scene(private val window: GameWindow) {
     //Shader
-    private val staticShader: ShaderProgram = ShaderProgram("assets/shaders/tron_vert.glsl", "assets/shaders/tron_frag.glsl")
+    private val staticShader: ShaderProgram = ShaderProgram("project/assets/shaders/tron_vert.glsl", "project/assets/shaders/tron_frag.glsl")
     //SKYBOX
-    private val cubeMapShader : ShaderProgram = ShaderProgram("assets/shaders/cubeMap_vert.glsl", "assets/shaders/cubeMap_frag.glsl")
+    private val cubeMapShader : ShaderProgram = ShaderProgram("project/assets/shaders/cubeMap_vert.glsl", "project/assets/shaders/cubeMap_frag.glsl")
     //blending
-    private val blendingShader : ShaderProgram = ShaderProgram("assets/shaders/blending_vert.glsl", "assets/shaders/blending_frag.glsl")
+    private val blendingShader : ShaderProgram = ShaderProgram("project/assets/shaders/blending_vert.glsl", "project/assets/shaders/blending_frag.glsl")
 
     //Objects
     private val ground: Renderable
@@ -93,9 +93,9 @@ class Scene(private val window: GameWindow) {
     //scene setup^^
     init {
         //load textures
-        defaultEmmitTex = Texture2D("assets/textures/defaultEmmitTex.png",true)
+        defaultEmmitTex = Texture2D("project/assets/textures/defaultEmmitTex.png",true)
         defaultEmmitTex.setTexParams(GL_CLAMP_TO_EDGE, GL_CLAMP_TO_EDGE, GL_LINEAR_MIPMAP_LINEAR, GL_LINEAR)
-        defaultSpecTex = Texture2D("assets/textures/defaultSpecTex.png",true)
+        defaultSpecTex = Texture2D("project/assets/textures/defaultSpecTex.png",true)
         defaultSpecTex.setTexParams(GL_CLAMP_TO_EDGE, GL_CLAMP_TO_EDGE, GL_LINEAR_MIPMAP_LINEAR, GL_LINEAR)
 
         //__loade Ground__
@@ -109,7 +109,7 @@ class Scene(private val window: GameWindow) {
         dragon = loadDragon()
         dragon.translate(Vector3f(2.0f, 4.0f, 8.0f))
         dragon.scale(Vector3f(0.5f,0.5f,0.5f))
-        dragon.rotate(0.0f, Math.toRadians(90.0f),0.0f)
+        dragon.rotate(0.0f, Math.toRadians(90.0),0.0f)
         
         //___loade Tower obj___
         tower = loadTower()
@@ -129,32 +129,32 @@ class Scene(private val window: GameWindow) {
         ring0 = loadRing()
         ring0.translate(tower.getPosition())
         ring0.translate(Vector3f(-9.0f,6.0f,0.0f))
-        ring0.rotate(0.0f,Math.toRadians(0.0f),0.0f)
+        ring0.rotate(0.0f,Math.toRadians(0.0),0.0f)
         ring0.scale(Vector3f(0.5f))
 
         ring1 = loadRing()
         ring1.translate(tower.getPosition())
         ring1.translate(Vector3f(-7.0f,12.0f,5.0f))
         ring1.scale(Vector3f(0.5f))
-        ring1.rotate(0.0f,Math.toRadians(45.0f),0.0f)
+        ring1.rotate(0.0f,Math.toRadians(45.0),0.0f)
 
         ring2 = loadRing()
         ring2.translate(tower.getPosition())
         ring2.translate(Vector3f(0.0f,18.0f,8.0f))
         ring2.scale(Vector3f(0.5f))
-        ring2.rotate(0.0f,Math.toRadians(90.0f),0.0f)
+        ring2.rotate(0.0f,Math.toRadians(90.0),0.0f)
 
         ring3 = loadRing()
         ring3.translate(tower.getPosition())
         ring3.translate(Vector3f(9.0f,16.0f,4.0f))
         ring3.scale(Vector3f(0.5f))
-        ring3.rotate(0.0f,Math.toRadians(-45.0f),0.0f)
+        ring3.rotate(0.0f,Math.toRadians(-45.0),0.0f)
 
         ring4 = loadRing()
         ring4.translate(tower1.getPosition())
         ring4.translate(Vector3f(9.0f,15.5f,4.0f))
         ring4.scale(Vector3f(0.5f))
-        ring4.rotate(Math.toRadians(90.0f),Math.toRadians(0.0f),0.0f)
+        ring4.rotate(Math.toRadians(90.0).toFloat(),Math.toRadians(0.0),0.0f)
 
         ringArray = arrayOf(ring0, ring1, ring2, ring3, ring4)
 
@@ -201,21 +201,21 @@ class Scene(private val window: GameWindow) {
         //setup camera
         camera = TronCamera(
                 custom(window.framebufferWidth, window.framebufferHeight),
-                Math.toRadians(90.0f),
+            Math.toRadians(90.0).toFloat(),
                 0.1f,
                 100.0f
         )
         camTwo = TronCamera(
                 custom(window.framebufferWidth, window.framebufferHeight),
-                Math.toRadians(90.0f),
+                Math.toRadians(90.0).toFloat(),
                 0.1f,
                 100.0f
         )
         camTwo.parent = dragon
-        camTwo.rotate(Math.toRadians(0.0f), Math.toRadians(180.0f), 0.0f)
+        camTwo.rotate(Math.toRadians(0.0).toFloat(), Math.toRadians(180.0), 0.0f)
         camTwo.translate(Vector3f(0.0f, 6.0f, -5.0f))
         camera.parent = dragon
-        camera.rotate(Math.toRadians(0.0f), Math.toRadians(180.0f), 0.0f)
+        camera.rotate(Math.toRadians(0.0).toFloat(), Math.toRadians(180.0), 0.0f)
         camera.translate(Vector3f(0.0f, 8.0f, 0.0f))
 
         groundColor = Vector3f(1.0f,1.0f,1.0f)
@@ -306,9 +306,9 @@ class Scene(private val window: GameWindow) {
             cake.render(staticShader)
         }
             //Ring
-        val x = Math.abs(Math.sin(t/2))
+        val x = Math.abs(Math.sin((t/2).toDouble()))
         val y = x
-        val ringColor = Vector3f(x,y,0.0f)
+        val ringColor = Vector3f(x.toFloat(), y.toFloat(),0.0f)
         staticShader.setUniform("shadingColor", ringColor)
         for (elem in ringArray){
             if(!elem.getCollider().getBCollided()){
@@ -361,10 +361,10 @@ class Scene(private val window: GameWindow) {
             dragon.translate(Vector3f(0.0f, 0.0f, -dt * moveMul))
         }
         if (window.getKeyState(GLFW_KEY_Q)) {
-            dragon.rotate(0.0f,0.0f,-dt * rotateMul)
+            dragon.rotate(0.0f,0.0,-dt * rotateMul)
         }
         if (window.getKeyState(GLFW_KEY_E)) {
-            dragon.rotate(0.0f, 0.0f, dt * rotateMul)
+            dragon.rotate(0.0f, 0.0, dt * rotateMul)
         }
         if (window.getKeyState(GLFW_KEY_SPACE)) {
             dragon.translate(Vector3f(0.0f,dt * moveMul+(-gravity),0.0f))
@@ -385,12 +385,12 @@ class Scene(private val window: GameWindow) {
         }
         if(window.getKeyState(GLFW_KEY_3)){
             if (localCam != null) {
-                localCam!!.fov = Math.toRadians(25.0f)
+                localCam!!.fov = Math.toRadians(25.0).toFloat()
             }
         }
         if(window.getKeyState(GLFW_KEY_4)){
             if (localCam != null){
-                localCam!!.fov = Math.toRadians(90.0f)
+                localCam!!.fov = Math.toRadians(90.0).toFloat()
             }
         }
 
@@ -399,13 +399,13 @@ class Scene(private val window: GameWindow) {
 
         //animation
         if (checkRings()){
-            cake.rotate(0.0f,0.01f,0.0f)
+            cake.rotate(0.0f, 0.01,0.0f)
         }
         ring4.rotateAroundPoint(0.0f,0.01f,0.0f,tower1.getPosition())
 
         for (elem in ringArray){
             if(!elem.getCollider().getBCollided()){
-                elem.rotate(0.0f,0.0f, Math.toRadians(1.0f))
+                elem.rotate(0.0f,0.0, Math.toRadians(1.0).toFloat())
             }
         }
     }
@@ -416,7 +416,7 @@ class Scene(private val window: GameWindow) {
             val yawAngle = (xpos - oldMouseX).toFloat() * 0.002f
             val pitchAngle = (ypos - oldMouseY).toFloat() * 0.0005f
             if (!window.getKeyState(GLFW_KEY_LEFT_ALT)) {
-                dragon.rotate(pitchAngle, -yawAngle, 0.0f)
+                dragon.rotate(pitchAngle, (-yawAngle).toDouble(), 0.0f)
             }
             else{
                 localCam!!.rotateAroundPoint(0.0f, yawAngle, 0.0f, Vector3f(0.0f, 0.0f, 0.0f))
@@ -439,19 +439,19 @@ class Scene(private val window: GameWindow) {
         */
     }
     private fun loadGround(): Renderable{
-        val groundDiff = Texture2D("assets/textures/ground/NatureGroundTexture.png", true) //rot.png
+        val groundDiff = Texture2D("project/assets/textures/ground/NatureGroundTexture.png", true) //rot.png
         groundDiff.setTexParams(GL_REPEAT, GL_REPEAT, GL_LINEAR_MIPMAP_LINEAR, GL_LINEAR)
 
-        groundDiff2 = Texture2D("assets/textures/ground/groundMountainTexture.png", true) //grün.png
+        groundDiff2 = Texture2D("project/assets/textures/ground/groundMountainTexture.png", true) //grün.png
         groundDiff2!!.setTexParams(GL_REPEAT, GL_REPEAT, GL_LINEAR_MIPMAP_LINEAR, GL_LINEAR)
 
-        blendMap = Texture2D("assets/textures/ground/blendMap.png", false)
+        blendMap = Texture2D("project/assets/textures/ground/blendMap.png", false)
         blendMap!!.setTexParams(GL_REPEAT, GL_REPEAT, GL_LINEAR, GL_LINEAR)
 
         groundMaterial = Material(groundDiff, defaultEmmitTex, defaultSpecTex, 60f, Vector2f(64.0f, 64.0f))
 
         //load an object and create a mesh
-        val gres = loadOBJ("assets/models/NewGround.obj")
+        val gres = loadOBJ("project/assets/models/NewGround.obj")
         //Create the mesh
         val atr1 = VertexAttribute(3, GL_FLOAT, stride, 0)     //position attribute
         val atr2 = VertexAttribute(2, GL_FLOAT, stride, 3 * 4) //texture coordinate attribute
@@ -466,11 +466,11 @@ class Scene(private val window: GameWindow) {
         return render
     }
     private fun loadRing(): Renderable{
-        val ringOBJ = loadOBJ("assets/models/ring.obj")
+        val ringOBJ = loadOBJ("project/assets/models/ring.obj")
 
-        val ringTex = Texture2D("assets/textures/ring.png", true)
+        val ringTex = Texture2D("project/assets/textures/ring.png", true)
             ringTex.setTexParams(GL_REPEAT, GL_REPEAT, GL_LINEAR_MIPMAP_LINEAR, GL_LINEAR)
-        val ringEmmit = Texture2D("assets/textures/ringEmmit2.png", true)
+        val ringEmmit = Texture2D("project/assets/textures/ringEmmit2.png", true)
             ringEmmit.setTexParams(GL_REPEAT, GL_REPEAT, GL_LINEAR_MIPMAP_LINEAR, GL_LINEAR)
 
         val ringMat = Material(ringTex, ringEmmit, defaultSpecTex)
@@ -489,11 +489,11 @@ class Scene(private val window: GameWindow) {
     }
 
     private fun loadeCake(): Renderable{
-        val ringOBJ = loadOBJ("assets/models/cake.obj")
+        val ringOBJ = loadOBJ("project/assets/models/cake.obj")
 
-        val cakeDiff = Texture2D("assets/textures/cake/cake_diff.png", true)
+        val cakeDiff = Texture2D("project/assets/textures/cake/cake_diff.png", true)
         cakeDiff.setTexParams(GL_REPEAT, GL_REPEAT, GL_LINEAR_MIPMAP_LINEAR, GL_LINEAR)
-        val cakeSpec = Texture2D("assets/textures/cake/cake_spec.png", true)
+        val cakeSpec = Texture2D("project/assets/textures/cake/cake_spec.png", true)
         cakeSpec.setTexParams(GL_REPEAT, GL_REPEAT, GL_LINEAR_MIPMAP_LINEAR, GL_LINEAR)
 
         val cakeMat = Material(cakeDiff, defaultEmmitTex, cakeSpec)
@@ -511,9 +511,9 @@ class Scene(private val window: GameWindow) {
         return render
     }
     private fun loadDragon(): Renderable{
-        val dragonOBJ = loadOBJ("assets/models/dragonCentered.obj")
+        val dragonOBJ = loadOBJ("project/assets/models/dragonCentered.obj")
 
-        val dragonTex = Texture2D("assets/textures/dragon.png", true)
+        val dragonTex = Texture2D("project/assets/textures/dragon.png", true)
         dragonTex.setTexParams(GL_REPEAT, GL_REPEAT, GL_LINEAR_MIPMAP_LINEAR, GL_LINEAR)
 
         val dragonMat = Material(dragonTex,defaultEmmitTex,defaultSpecTex)
@@ -531,11 +531,11 @@ class Scene(private val window: GameWindow) {
         return render
     }
     private fun loadTower(): Renderable {
-        val towerOBJ = loadOBJ("assets/models/towerNeu.obj")
+        val towerOBJ = loadOBJ("project/assets/models/towerNeu.obj")
 
-        val towerDiff = Texture2D("assets/textures/TowerTextures/tower_square_7_Base_Color.png",  true)
+        val towerDiff = Texture2D("project/assets/textures/TowerTextures/tower_square_7_Base_Color.png",  true)
         towerDiff.setTexParams(GL_REPEAT, GL_REPEAT, GL_LINEAR_MIPMAP_LINEAR, GL_LINEAR)
-        val towerSpec = Texture2D("assets/textures/specDark.png", true)
+        val towerSpec = Texture2D("project/assets/textures/specDark.png", true)
         towerSpec.setTexParams(GL_REPEAT, GL_REPEAT, GL_LINEAR_MIPMAP_LINEAR, GL_LINEAR)
 
         val towerMat = Material(towerDiff,defaultEmmitTex,towerSpec)
@@ -580,12 +580,12 @@ class Scene(private val window: GameWindow) {
         )
 
         val skyBoxTex = arrayOf(
-            "assets/textures/skybox/skyBoxRIGHT.png",
-            "assets/textures/skybox/skyBoxLEFT.png",
-            "assets/textures/skybox/skyBoxBOTTOM.png",
-            "assets/textures/skybox/skyBoxTOP.png",
-            "assets/textures/skybox/skyBoxMIDDLE.png",
-            "assets/textures/skybox/skyBoxBACK.png"
+            "project/assets/textures/skybox/skyBoxRIGHT.png",
+            "project/assets/textures/skybox/skyBoxLEFT.png",
+            "project/assets/textures/skybox/skyBoxBOTTOM.png",
+            "project/assets/textures/skybox/skyBoxTOP.png",
+            "project/assets/textures/skybox/skyBoxMIDDLE.png",
+            "project/assets/textures/skybox/skyBoxBACK.png"
         )
         // falls Schwarze Ränder: Clamp To Edge //https://www.khronos.org/opengl/wiki/Cubemap_Texture#Seamless_cubemap
         //SKYBOX
