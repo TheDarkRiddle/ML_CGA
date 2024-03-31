@@ -109,7 +109,7 @@ class Scene(private val window: GameWindow) {
         dragon = loadDragon()
         dragon.translate(Vector3f(2.0f, 4.0f, 8.0f))
         dragon.scale(Vector3f(0.5f,0.5f,0.5f))
-        dragon.rotate(0.0f, Math.toRadians(90.0f),0.0f)
+        dragon.rotate(0.0f, Math.toRadians(90.0),0.0f)
         
         //___loade Tower obj___
         tower = loadTower()
@@ -129,32 +129,32 @@ class Scene(private val window: GameWindow) {
         ring0 = loadRing()
         ring0.translate(tower.getPosition())
         ring0.translate(Vector3f(-9.0f,6.0f,0.0f))
-        ring0.rotate(0.0f,Math.toRadians(0.0f),0.0f)
+        ring0.rotate(0.0f,Math.toRadians(0.0),0.0f)
         ring0.scale(Vector3f(0.5f))
 
         ring1 = loadRing()
         ring1.translate(tower.getPosition())
         ring1.translate(Vector3f(-7.0f,12.0f,5.0f))
         ring1.scale(Vector3f(0.5f))
-        ring1.rotate(0.0f,Math.toRadians(45.0f),0.0f)
+        ring1.rotate(0.0f,Math.toRadians(45.0),0.0f)
 
         ring2 = loadRing()
         ring2.translate(tower.getPosition())
         ring2.translate(Vector3f(0.0f,18.0f,8.0f))
         ring2.scale(Vector3f(0.5f))
-        ring2.rotate(0.0f,Math.toRadians(90.0f),0.0f)
+        ring2.rotate(0.0f,Math.toRadians(90.0),0.0f)
 
         ring3 = loadRing()
         ring3.translate(tower.getPosition())
         ring3.translate(Vector3f(9.0f,16.0f,4.0f))
         ring3.scale(Vector3f(0.5f))
-        ring3.rotate(0.0f,Math.toRadians(-45.0f),0.0f)
+        ring3.rotate(0.0f,Math.toRadians((-45.0f).toDouble()),0.0f)
 
         ring4 = loadRing()
         ring4.translate(tower1.getPosition())
         ring4.translate(Vector3f(9.0f,15.5f,4.0f))
         ring4.scale(Vector3f(0.5f))
-        ring4.rotate(Math.toRadians(90.0f),Math.toRadians(0.0f),0.0f)
+        ring4.rotate(Math.toRadians(90.0).toFloat(),Math.toRadians(0.0),0.0f)//Test
 
         ringArray = arrayOf(ring0, ring1, ring2, ring3, ring4)
 
@@ -201,21 +201,21 @@ class Scene(private val window: GameWindow) {
         //setup camera
         camera = TronCamera(
                 custom(window.framebufferWidth, window.framebufferHeight),
-                Math.toRadians(90.0f),
+            Math.toRadians(90.0).toFloat(),
                 0.1f,
                 100.0f
         )
         camTwo = TronCamera(
                 custom(window.framebufferWidth, window.framebufferHeight),
-                Math.toRadians(90.0f),
+            Math.toRadians(90.0).toFloat(),
                 0.1f,
                 100.0f
         )
         camTwo.parent = dragon
-        camTwo.rotate(Math.toRadians(0.0f), Math.toRadians(180.0f), 0.0f)
+        camTwo.rotate(Math.toRadians(0.0).toFloat(), Math.toRadians(180.0), 0.0f)
         camTwo.translate(Vector3f(0.0f, 6.0f, -5.0f))
         camera.parent = dragon
-        camera.rotate(Math.toRadians(0.0f), Math.toRadians(180.0f), 0.0f)
+        camera.rotate(Math.toRadians(0.0).toFloat(), Math.toRadians(180.0), 0.0f)
         camera.translate(Vector3f(0.0f, 8.0f, 0.0f))
 
         groundColor = Vector3f(1.0f,1.0f,1.0f)
@@ -306,9 +306,9 @@ class Scene(private val window: GameWindow) {
             cake.render(staticShader)
         }
             //Ring
-        val x = Math.abs(Math.sin(t/2))
+        val x = Math.abs(Math.sin((t/2).toDouble()))
         val y = x
-        val ringColor = Vector3f(x,y,0.0f)
+        val ringColor = Vector3f(x.toFloat(), y.toFloat(),0.0f)
         staticShader.setUniform("shadingColor", ringColor)
         for (elem in ringArray){
             if(!elem.getCollider().getBCollided()){
@@ -361,10 +361,10 @@ class Scene(private val window: GameWindow) {
             dragon.translate(Vector3f(0.0f, 0.0f, -dt * moveMul))
         }
         if (window.getKeyState(GLFW_KEY_Q)) {
-            dragon.rotate(0.0f,0.0f,-dt * rotateMul)
+            dragon.rotate(0.0f, 0.0,-dt * rotateMul)
         }
         if (window.getKeyState(GLFW_KEY_E)) {
-            dragon.rotate(0.0f, 0.0f, dt * rotateMul)
+            dragon.rotate(0.0f, 0.0, dt * rotateMul)
         }
         if (window.getKeyState(GLFW_KEY_SPACE)) {
             dragon.translate(Vector3f(0.0f,dt * moveMul+(-gravity),0.0f))
@@ -385,12 +385,12 @@ class Scene(private val window: GameWindow) {
         }
         if(window.getKeyState(GLFW_KEY_3)){
             if (localCam != null) {
-                localCam!!.fov = Math.toRadians(25.0f)
+                localCam!!.fov = Math.toRadians(25.0).toFloat()
             }
         }
         if(window.getKeyState(GLFW_KEY_4)){
             if (localCam != null){
-                localCam!!.fov = Math.toRadians(90.0f)
+                localCam!!.fov = Math.toRadians(90.0).toFloat()
             }
         }
 
@@ -399,13 +399,13 @@ class Scene(private val window: GameWindow) {
 
         //animation
         if (checkRings()){
-            cake.rotate(0.0f,0.01f,0.0f)
+            cake.rotate(0.0f,0.01,0.0f)
         }
         ring4.rotateAroundPoint(0.0f,0.01f,0.0f,tower1.getPosition())
 
         for (elem in ringArray){
             if(!elem.getCollider().getBCollided()){
-                elem.rotate(0.0f,0.0f, Math.toRadians(1.0f))
+                elem.rotate(0.0f,0.0, Math.toRadians(1.0).toFloat())
             }
         }
     }
@@ -416,7 +416,7 @@ class Scene(private val window: GameWindow) {
             val yawAngle = (xpos - oldMouseX).toFloat() * 0.002f
             val pitchAngle = (ypos - oldMouseY).toFloat() * 0.0005f
             if (!window.getKeyState(GLFW_KEY_LEFT_ALT)) {
-                dragon.rotate(pitchAngle, -yawAngle, 0.0f)
+                dragon.rotate(pitchAngle, (-yawAngle).toDouble(), 0.0f)
             }
             else{
                 localCam!!.rotateAroundPoint(0.0f, yawAngle, 0.0f, Vector3f(0.0f, 0.0f, 0.0f))
