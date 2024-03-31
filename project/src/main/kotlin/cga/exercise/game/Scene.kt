@@ -215,8 +215,8 @@ class Scene(private val window: GameWindow) {
         camTwo.rotate(Math.toRadians(0.0).toFloat(), Math.toRadians(180.0), 0.0f)
         camTwo.translate(Vector3f(0.0f, 6.0f, -5.0f))
         camera.parent = dragon
-        camera.rotate(Math.toRadians(0.0).toFloat(), Math.toRadians(180.0), 0.0f)
-        camera.translate(Vector3f(0.0f, 8.0f, 0.0f))
+        camera.rotate(Math.toRadians(0.0).toFloat(), Math.toRadians(180.0), 0.0f) //Hier Kamera winkel 180
+        camera.translate(Vector3f(0.0f, 8.0f, 0.0f))//Hier Kamera entfernung 8
 
         groundColor = Vector3f(1.0f,1.0f,1.0f)
 
