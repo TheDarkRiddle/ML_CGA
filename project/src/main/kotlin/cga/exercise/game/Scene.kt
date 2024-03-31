@@ -154,7 +154,7 @@ class Scene(private val window: GameWindow) {
         ring4.translate(tower1.getPosition())
         ring4.translate(Vector3f(9.0f,15.5f,4.0f))
         ring4.scale(Vector3f(0.5f))
-        ring4.rotate(Math.toRadians(90.0).toFloat(),Math.toRadians(0.0),0.0f)
+        ring4.rotate(Math.toRadians(90.0).toFloat(),Math.toRadians(0.0),0.0f)//Test
 
         ringArray = arrayOf(ring0, ring1, ring2, ring3, ring4)
 
